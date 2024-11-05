@@ -6,7 +6,7 @@ Resources:
     Type: AWS::EC2::Instance
     Properties:
       ImageId: ami-09b0a86a2c84101e1 # ImageID valid only in ap-south-1 region
-      InstanceType: t2.micro
+      InstanceType: t3.micro
       KeyName: 11am-batch-pass # <-- Change to use your key-pair name
       SecurityGroupIds:
         - !Ref WebAppSecurityGroup
