@@ -1,0 +1,39 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: Create an EC2 instance with a security group (firewall)
+
+Resources:
+  # Security Group to define the firewall rules
+  MySecurityGroup:
+    Type: AWS::EC2::SecurityGroup
+    Properties:
+      GroupDescription: "Allow SSH and HTTP traffic"
+      SecurityGroupIngress:
+        - IpProtocol: "tcp"
+          FromPort: "22"
+          ToPort: "22"
+          CidrIp: "0.0.0.0/0"  # Allow SSH access from anywhere
+        - IpProtocol: "tcp"
+          FromPort: "80"
+          ToPort: "80"
+          CidrIp: "0.0.0.0/0"  # Allow SSH access from anywhere
+
+  # EC2 Instance
+  MyEC2Instance:
+    Type: AWS::EC2::Instance
+    Properties:
+      InstanceType: t2.micro  # Change instance type as needed
+      ImageId: ami-0884d2865dbe9de4b  # Replace with the latest Amazon Linux 2 AMI ID for your region
+      KeyName: 9.30am  # Replace with your EC2 key pair name
+      SecurityGroups:
+        - Ref: MySecurityGroup
+      Tags:
+        - Key: Name
+          Value: MyEC2Instance
+
+Outputs:
+  InstanceId:
+    Description: "The Instance ID"
+    Value: !Ref MyEC2Instance
+  PublicIP:
+    Description: "Public IP of the EC2 instance"
+    Value: !GetAtt MyEC2Instance.PublicIp
