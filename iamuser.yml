@@ -17,4 +17,6 @@ Resources:
           - Effect: 'Allow'
             Action:
               - 's3:ListBucket'   # Example action, modify based on your use case
+              - 's3:PutObject'
+              - 's3:GetObject'
             Resource: '*'  # Example resource, adjust accordingly
