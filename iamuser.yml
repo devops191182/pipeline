@@ -1,0 +1,20 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Resources:
+  MyIAMUser:
+    Type: 'AWS::IAM::User'
+    Properties:
+      UserName: 'rohit'  # Change the username as needed
+
+  MyIAMUserPolicyAttachment:
+    Type: 'AWS::IAM::Policy'
+    Properties:
+      PolicyName: 's3access'  # Name of the policy to attach
+      Users:
+        - Ref: 'MyIAMUser'  # Attach the policy to the created user
+      PolicyDocument:
+        Version: '2012-10-17'
+        Statement:
+          - Effect: 'Allow'
+            Action:
+              - 's3:ListBucket'   # Example action, modify based on your use case
+            Resource: '*'  # Example resource, adjust accordingly
