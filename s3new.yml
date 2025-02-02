@@ -1,0 +1,9 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Resources:
+  MyS3Bucket:
+    Type: 'AWS::S3::Bucket'
+    Properties:
+      BucketName: dev-930-b-demo
+      AccessControl: Private
+      VersioningConfiguration:
+        Status: Enabled
